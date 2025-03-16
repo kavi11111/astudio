@@ -1,66 +1,354 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ASTUDIO Laravel API Assessment
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a Laravel-based API for managing users, projects, timesheets, dynamic attributes,and EAV Implementation.
 
-## About Laravel
+## Setup Instructions
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1.  **Clone the Repository**:
+    ```bash
+    git clone https://github.com/kavi11111/astudio.git
+    cd astudio
+    ```
+2.  **Install Dependencies**:
+    composer install
+    npm install
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3.  **Set Up the Environment**:
+    ->Copy the .env.example file to .env:
+    cp .env.example .env
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    ->Update the .env file with your database credentials.
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_database_user
+    DB_PASSWORD=your_database_password
 
-## Learning Laravel
+    ->Generate Application Key:
+    php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    ->Import the Provided SQL Dump(in root directory):
+    mysql -u your_database_user -p your_database_name < database.sql
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ->Start the Development Server:
+    php artisan serve
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4.  **Test Credentials**:
+    `markdown`
 
-## Laravel Sponsors
+    ## Test Credentials
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    -   **email**: `kavi@gmail.com`
+    -   **password**: `qwertyuiop`
 
-### Premium Partners
+5.  **API Documentation & Example requests/responses**:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    **After logging in, you will receive an access token. This token must be included in the Authorization header of all subsequent requests to access protected endpoints.**
 
-## Contributing
+    ->Using the Access Token
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    -   Include the access token in the Authorization header of all protected requests:
+    -   Authorization: Bearer <access_token>
+    -   Example: curl -X GET http://127.0.0.1:8000/api/projects \
+        -H "Accept: application/json" \
+        -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
 
-## Code of Conduct
+    ->Authentication:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    **Register a User**
+    Endpoint: POST /api/register
+    Request:
+    {
+    "first_name": "Naseem",
+    "last_name": "Shah",
+    "email": "naseem@gmail.com",
+    "password": "password123"
+    }
 
-## Security Vulnerabilities
+        Response:
+        {
+        "message": "User registered successfully",
+            "user": {
+                "first_name": "Naseem",
+                "last_name": "Shah",
+                "email": "naseem@gmail.com",
+                "updated_at": "2025-03-16T13:02:10.000000Z",
+                "created_at": "2025-03-16T13:02:10.000000Z",
+                "id": 2
+            }
+        }
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    **Log In**
+    Endpoint: POST /api/login
+    Request:{
+    "email": "kavi@gmail.com",
+    "password": "qwertyuiop"
+    }
 
-## License
+        Response:
+        {
+            "message": "Login successful",
+            "user": {
+                "id": 1,
+                "first_name": "kavi",
+                "last_name": "yarasan",
+                "email": "kavi@gmail.com",
+                "email_verified_at": null,
+                "created_at": "2025-03-16T07:20:42.000000Z",
+                "updated_at": "2025-03-16T07:20:42.000000Z"
+            },
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDliOTljYmU4OGJiMDU0MzcwMTk0NjY4MTQ5M2VlNDg3ODk3NzQ0MmJlMzc4Y2I4MjE2OGM3YTAzMTVlYmViNDUwYzU1NTk1OGFhMDg1YzEiLCJpYXQiOjE3NDIxMjA3NzYuMTMyNjM2LCJuYmYiOjE3NDIxMjA3NzYuMTMyNjQxLCJleHAiOjE3NzM2NTY3NzUuNjY4MDQyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Gpx476vFKCjZvm3oST7BRq1acEh0IoquJPru4UYXMKPv3romwm36PAzAqnZnZbLhKBQZDtyoL2NZPUXmsW-pPJf8S8TJxJeZcpZs8aoOcxXfplePd_-0BXpjiqWRdv5bYmHyP_ssq80zyZ1VejuesuoMB3OwN5zTnwkxW-vPkggvnVxzXWwy1CJZCO7aZ_zB6d_db7B_mBRC9ZX8wuW87gAG5b6NiedBuq6xmr1XeMVNT6dEzGmdnEKRnPAVdi8zXbTzJPgPEjziISCc3sngPG9zq30_A5ADd0SRYrsP14DxlxFUgbx1O8T-zYFA1ufJj6unAfwR-CgHI-2sJ5_iy-ewIgM_4GDmPqn5jouEmzI7VspS418PlYPWluErjhCH9tq2Qe4SVdTzC-ciYemW395SNY5UO8LE8cAMBcIgiLDjLWDjrVNfQHtrocchxH6JySwLZT5mP7LRoLy7tRedzeAmLqqe1Z23RJrnSxwV8tScgEH9WG8agU-AtG0hDTgoX5NixHrAncS3FzMR4uTvk9hyi8kaT4Q8i8rIhoVZltDsk4m1qlLXMhI0cM3dKOtMcuooIgM9sThNN5mK-WXrWPUql8sy4ic5qebNdHxQAPKlFd445qQNI_WRcs4KP7rne-PpJcxGY1wFWVKYlwQeQnrWBSFufSXMelRg_i1mBK4"
+        }
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    -> Attribute
+    **Add Attribute**
+
+        Endpoint: POST /api/attributes
+        Request:{
+            "name": "department",
+            "type": "text"
+        }
+
+        Response:{
+            "name": "department",
+            "type": "text",
+            "updated_at": "2025-03-16T10:53:32.000000Z",
+            "created_at": "2025-03-16T10:53:32.000000Z",
+            "id": 2
+        }
+
+    **Delete Attribute**
+
+        Endpoint: DELETE /api/attributes/1
+        Response: 204 No Content
+
+    -> Projects
+    **Add projects**
+
+        Endpoint: POST /api/projects
+        Request:{
+            "name": "Rolex",
+            "status": "active",
+            "attributes": [
+                {
+                    "attribute_id": 2,
+                    "value": "Branding"
+                },
+                {
+                    "attribute_id": 3,
+                    "value": "Ongoing"
+                }
+            ]
+        }
+
+        Response:{
+            "name": "Rolex",
+            "status": "active",
+            "updated_at": "2025-03-16T10:59:19.000000Z",
+            "created_at": "2025-03-16T10:59:19.000000Z",
+            "id": 1,
+            "attribute_values": [
+                {
+                    "id": 1,
+                    "attribute_id": 2,
+                    "value": "Branding",
+                    "created_at": "2025-03-16T10:59:19.000000Z",
+                    "updated_at": "2025-03-16T10:59:19.000000Z",
+                    "entity_id": 1,
+                    "attribute": {
+                        "id": 2,
+                        "name": "department",
+                        "type": "text",
+                        "created_at": "2025-03-16T10:53:32.000000Z",
+                        "updated_at": "2025-03-16T10:53:32.000000Z"
+                    }
+                },
+                {
+                    "id": 2,
+                    "attribute_id": 3,
+                    "value": "Ongoing",
+                    "created_at": "2025-03-16T10:59:19.000000Z",
+                    "updated_at": "2025-03-16T10:59:19.000000Z",
+                    "entity_id": 1,
+                    "attribute": {
+                        "id": 3,
+                        "name": "status",
+                        "type": "text",
+                        "created_at": "2025-03-16T10:56:13.000000Z",
+                        "updated_at": "2025-03-16T10:56:13.000000Z"
+                    }
+                }
+            ]
+        }
+
+    **Get Project**
+
+    Endpoint: GET /api/projects/2
+    Response:{
+    "id": 2,
+    "name": "Arrow",
+    "status": "active",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:01:07.000000Z",
+    "attribute_values": [
+    {
+    "id": 3,
+    "attribute_id": 2,
+    "value": "Ads",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:01:07.000000Z",
+    "entity_id": 2,
+    "attribute": {
+    "id": 2,
+    "name": "department",
+    "type": "text",
+    "created_at": "2025-03-16T10:53:32.000000Z",
+    "updated_at": "2025-03-16T10:53:32.000000Z"
+    }
+    },
+    {
+    "id": 4,
+    "attribute_id": 3,
+    "value": "Pending",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:01:07.000000Z",
+    "entity_id": 2,
+    "attribute": {
+    "id": 3,
+    "name": "status",
+    "type": "text",
+    "created_at": "2025-03-16T10:56:13.000000Z",
+    "updated_at": "2025-03-16T10:56:13.000000Z"
+    }
+    }
+    ]
+    }
+
+    **Update Project**
+    Endpoint: PUT /api/projects/2
+    Request:{
+    "name": "Arrow",
+    "status": "completed",
+    "attributes": [
+    {
+    "attribute_id": 2,
+    "value": "Ads"
+    },
+    {
+    "attribute_id": 3,
+    "value": "Completed"
+    }
+    ]
+    }
+    Response:{
+    "id": 2,
+    "name": "Arrow",
+    "status": "completed",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:05:33.000000Z",
+    "attribute_values": [
+    {
+    "id": 3,
+    "attribute_id": 2,
+    "value": "Ads",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:01:07.000000Z",
+    "entity_id": 2,
+    "attribute": {
+    "id": 2,
+    "name": "department",
+    "type": "text",
+    "created_at": "2025-03-16T10:53:32.000000Z",
+    "updated_at": "2025-03-16T10:53:32.000000Z"
+    }
+    },
+    {
+    "id": 4,
+    "attribute_id": 3,
+    "value": "Completed",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:49:54.000000Z",
+    "entity_id": 2,
+    "attribute": {
+    "id": 3,
+    "name": "status",
+    "type": "text",
+    "created_at": "2025-03-16T10:56:13.000000Z",
+    "updated_at": "2025-03-16T10:56:13.000000Z"
+    }
+    }
+    ]
+    }
+
+    ->TimeSheet
+    **Add TimeSheet**
+    Endpoint: POST /api/timesheets
+    Request:{
+    "task_name": "Scripting",
+    "date": "2025-03-16",
+    "hours": 8,
+    "user_id": 1,
+    "project_id": 2
+    }
+    Response:{
+    "task_name": "Scripting",
+    "date": "2025-03-16",
+    "hours": 8,
+    "user_id": 1,
+    "project_id": 2,
+    "updated_at": "2025-03-16T12:26:22.000000Z",
+    "created_at": "2025-03-16T12:26:22.000000Z",
+    "id": 1,
+    "user": {
+    "id": 1,
+    "first_name": "kavi",
+    "last_name": "yarasan",
+    "email": "kavi@gmail.com",
+    "email_verified_at": null,
+    "created_at": "2025-03-16T07:20:42.000000Z",
+    "updated_at": "2025-03-16T07:20:42.000000Z"
+    },
+    "project": {
+    "id": 2,
+    "name": "Arrow",
+    "status": "completed",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:05:33.000000Z"
+    }
+    }
+
+    **Get Timesheet for User**
+    Endpoint: GET /api/timesheets/1
+    Response:{
+    "id": 1,
+    "task_name": "Scripting",
+    "date": "2025-03-16",
+    "hours": "8.00",
+    "user_id": 1,
+    "project_id": 2,
+    "created_at": "2025-03-16T12:26:22.000000Z",
+    "updated_at": "2025-03-16T12:26:22.000000Z",
+    "user": {
+    "id": 1,
+    "first_name": "kavi",
+    "last_name": "yarasan",
+    "email": "kavi@gmail.com",
+    "email_verified_at": null,
+    "created_at": "2025-03-16T07:20:42.000000Z",
+    "updated_at": "2025-03-16T07:20:42.000000Z"
+    },
+    "project": {
+    "id": 2,
+    "name": "Arrow",
+    "status": "completed",
+    "created_at": "2025-03-16T11:01:07.000000Z",
+    "updated_at": "2025-03-16T11:05:33.000000Z"
+    }
+    }
+
+---
+
+### **Conclusion**
+
+By explicitly mentioning how to use the access token in the `Authorization` header, you make it clear to users how to authenticate their requests. This improves the usability of your API documentation. Let me know if you need further assistance! 😊
