@@ -9,6 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('attribute_values', function (Blueprint $table) {
+            $table->dropForeign(['entity_id']);
             $table->dropColumn('entity_id');
             $table->foreignId('entity_id')->constrained('projects')->onDelete('cascade');
         });

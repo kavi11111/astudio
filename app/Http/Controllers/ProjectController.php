@@ -17,7 +17,7 @@ class ProjectController extends Controller
         return response()->json($projects);
     }
 
-    // create a new project with dynamic attributes
+    // create new project with dynamic attributes
     public function store(Request $request): JsonResponse
     {
         $request->validate([
@@ -28,7 +28,7 @@ class ProjectController extends Controller
             'attributes.*.value' => 'required|string',
         ]);
     
-        // Create the project
+        // create project
         $project = Project::create($request->only('name', 'status'));
 
         if ($request->has('attributes')) {
@@ -63,10 +63,11 @@ class ProjectController extends Controller
             'attributes.*.value' => 'required|string',
         ]);
 
-        $project->update($request->only('name', 'status'));
+        Log::info('Request data:', $request->all());
 
         if ($request->has('attributes')) {
-            foreach ($request->attributes as $attribute) {
+            foreach ($request->input('attributes', []) as $attribute) {
+        
                 AttributeValue::updateOrCreate(
                     [
                         'attribute_id' => $attribute['attribute_id'],
@@ -77,6 +78,8 @@ class ProjectController extends Controller
                     ]
                 );
             }
+        } else {
+            Log::info('Attributes key is missing or its not an array.');
         }
 
         return response()->json($project->load('attributeValues.attribute'));
