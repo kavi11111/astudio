@@ -184,168 +184,246 @@ This is a Laravel-based API for managing users, projects, timesheets, dynamic at
 
     **Get Project**
 
-    Endpoint: GET /api/projects/2
-    Response:{
-    "id": 2,
-    "name": "Arrow",
-    "status": "active",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:01:07.000000Z",
-    "attribute_values": [
-    {
-    "id": 3,
-    "attribute_id": 2,
-    "value": "Ads",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:01:07.000000Z",
-    "entity_id": 2,
-    "attribute": {
-    "id": 2,
-    "name": "department",
-    "type": "text",
-    "created_at": "2025-03-16T10:53:32.000000Z",
-    "updated_at": "2025-03-16T10:53:32.000000Z"
-    }
-    },
-    {
-    "id": 4,
-    "attribute_id": 3,
-    "value": "Pending",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:01:07.000000Z",
-    "entity_id": 2,
-    "attribute": {
-    "id": 3,
-    "name": "status",
-    "type": "text",
-    "created_at": "2025-03-16T10:56:13.000000Z",
-    "updated_at": "2025-03-16T10:56:13.000000Z"
-    }
-    }
-    ]
-    }
+        Endpoint: GET /api/projects/2
+        Response:{
+        "id": 2,
+        "name": "Arrow",
+        "status": "active",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:01:07.000000Z",
+        "attribute_values": [
+        {
+        "id": 3,
+        "attribute_id": 2,
+        "value": "Ads",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:01:07.000000Z",
+        "entity_id": 2,
+        "attribute": {
+        "id": 2,
+        "name": "department",
+        "type": "text",
+        "created_at": "2025-03-16T10:53:32.000000Z",
+        "updated_at": "2025-03-16T10:53:32.000000Z"
+        }
+        },
+        {
+        "id": 4,
+        "attribute_id": 3,
+        "value": "Pending",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:01:07.000000Z",
+        "entity_id": 2,
+        "attribute": {
+        "id": 3,
+        "name": "status",
+        "type": "text",
+        "created_at": "2025-03-16T10:56:13.000000Z",
+        "updated_at": "2025-03-16T10:56:13.000000Z"
+        }
+        }
+        ]
+        }
 
     **Update Project**
-    Endpoint: PUT /api/projects/2
-    Request:{
-    "name": "Arrow",
-    "status": "completed",
-    "attributes": [
-    {
-    "attribute_id": 2,
-    "value": "Ads"
-    },
-    {
-    "attribute_id": 3,
-    "value": "Completed"
-    }
-    ]
-    }
-    Response:{
-    "id": 2,
-    "name": "Arrow",
-    "status": "completed",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:05:33.000000Z",
-    "attribute_values": [
-    {
-    "id": 3,
-    "attribute_id": 2,
-    "value": "Ads",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:01:07.000000Z",
-    "entity_id": 2,
-    "attribute": {
-    "id": 2,
-    "name": "department",
-    "type": "text",
-    "created_at": "2025-03-16T10:53:32.000000Z",
-    "updated_at": "2025-03-16T10:53:32.000000Z"
-    }
-    },
-    {
-    "id": 4,
-    "attribute_id": 3,
-    "value": "Completed",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:49:54.000000Z",
-    "entity_id": 2,
-    "attribute": {
-    "id": 3,
-    "name": "status",
-    "type": "text",
-    "created_at": "2025-03-16T10:56:13.000000Z",
-    "updated_at": "2025-03-16T10:56:13.000000Z"
-    }
-    }
-    ]
-    }
+
+        Endpoint: PUT /api/projects/2
+        Request:{
+        "name": "Arrow",
+        "status": "completed",
+        "attributes": [
+        {
+        "attribute_id": 2,
+        "value": "Ads"
+        },
+        {
+        "attribute_id": 3,
+        "value": "Completed"
+        }
+        ]
+        }
+        Response:{
+        "id": 2,
+        "name": "Arrow",
+        "status": "completed",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:05:33.000000Z",
+        "attribute_values": [
+        {
+        "id": 3,
+        "attribute_id": 2,
+        "value": "Ads",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:01:07.000000Z",
+        "entity_id": 2,
+        "attribute": {
+        "id": 2,
+        "name": "department",
+        "type": "text",
+        "created_at": "2025-03-16T10:53:32.000000Z",
+        "updated_at": "2025-03-16T10:53:32.000000Z"
+        }
+        },
+        {
+        "id": 4,
+        "attribute_id": 3,
+        "value": "Completed",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:49:54.000000Z",
+        "entity_id": 2,
+        "attribute": {
+        "id": 3,
+        "name": "status",
+        "type": "text",
+        "created_at": "2025-03-16T10:56:13.000000Z",
+        "updated_at": "2025-03-16T10:56:13.000000Z"
+        }
+        }
+        ]
+        }
+
+    **Dynamic Filters for Projects and Attributes**
+
+        Endpoint: GET `/api/projects/filter?filters[name:like]=rolex&filters[department:%3D]=Branding`
+        Response:{
+        "current_page": 1,
+        "data": [
+        {
+        "id": 1,
+        "name": "Rolex",
+        "status": "active",
+        "created_at": "2025-03-16T10:59:19.000000Z",
+        "updated_at": "2025-03-16T10:59:19.000000Z",
+        "attribute_values": [
+        {
+        "id": 1,
+        "attribute_id": 2,
+        "value": "Branding",
+        "created_at": "2025-03-16T10:59:19.000000Z",
+        "updated_at": "2025-03-16T10:59:19.000000Z",
+        "entity_id": 1,
+        "attribute": {
+        "id": 2,
+        "name": "department",
+        "type": "text",
+        "created_at": "2025-03-16T10:53:32.000000Z",
+        "updated_at": "2025-03-16T10:53:32.000000Z"
+        }
+        },
+        {
+        "id": 2,
+        "attribute_id": 3,
+        "value": "Ongoing",
+        "created_at": "2025-03-16T10:59:19.000000Z",
+        "updated_at": "2025-03-16T10:59:19.000000Z",
+        "entity_id": 1,
+        "attribute": {
+        "id": 3,
+        "name": "status",
+        "type": "text",
+        "created_at": "2025-03-16T10:56:13.000000Z",
+        "updated_at": "2025-03-16T10:56:13.000000Z"
+        }
+        }
+        ]
+        }
+        ],
+        "first_page_url": "http://127.0.0.1:8000/api/projects/filter?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://127.0.0.1:8000/api/projects/filter?page=1",
+        "links": [
+        {
+        "url": null,
+        "label": "&laquo; Previous",
+        "active": false
+        },
+        {
+        "url": "http://127.0.0.1:8000/api/projects/filter?page=1",
+        "label": "1",
+        "active": true
+        },
+        {
+        "url": null,
+        "label": "Next &raquo;",
+        "active": false
+        }
+        ],
+        "next_page_url": null,
+        "path": "http://127.0.0.1:8000/api/projects/filter",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+        }
 
     ->TimeSheet
     **Add TimeSheet**
-    Endpoint: POST /api/timesheets
-    Request:{
-    "task_name": "Scripting",
-    "date": "2025-03-16",
-    "hours": 8,
-    "user_id": 1,
-    "project_id": 2
-    }
-    Response:{
-    "task_name": "Scripting",
-    "date": "2025-03-16",
-    "hours": 8,
-    "user_id": 1,
-    "project_id": 2,
-    "updated_at": "2025-03-16T12:26:22.000000Z",
-    "created_at": "2025-03-16T12:26:22.000000Z",
-    "id": 1,
-    "user": {
-    "id": 1,
-    "first_name": "kavi",
-    "last_name": "yarasan",
-    "email": "kavi@gmail.com",
-    "email_verified_at": null,
-    "created_at": "2025-03-16T07:20:42.000000Z",
-    "updated_at": "2025-03-16T07:20:42.000000Z"
-    },
-    "project": {
-    "id": 2,
-    "name": "Arrow",
-    "status": "completed",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:05:33.000000Z"
-    }
-    }
+
+        Endpoint: POST /api/timesheets
+        Request:{
+        "task_name": "Scripting",
+        "date": "2025-03-16",
+        "hours": 8,
+        "user_id": 1,
+        "project_id": 2
+        }
+        Response:{
+        "task_name": "Scripting",
+        "date": "2025-03-16",
+        "hours": 8,
+        "user_id": 1,
+        "project_id": 2,
+        "updated_at": "2025-03-16T12:26:22.000000Z",
+        "created_at": "2025-03-16T12:26:22.000000Z",
+        "id": 1,
+        "user": {
+        "id": 1,
+        "first_name": "kavi",
+        "last_name": "yarasan",
+        "email": "kavi@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2025-03-16T07:20:42.000000Z",
+        "updated_at": "2025-03-16T07:20:42.000000Z"
+        },
+        "project": {
+        "id": 2,
+        "name": "Arrow",
+        "status": "completed",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:05:33.000000Z"
+        }
+        }
 
     **Get Timesheet for User**
-    Endpoint: GET /api/timesheets/1
-    Response:{
-    "id": 1,
-    "task_name": "Scripting",
-    "date": "2025-03-16",
-    "hours": "8.00",
-    "user_id": 1,
-    "project_id": 2,
-    "created_at": "2025-03-16T12:26:22.000000Z",
-    "updated_at": "2025-03-16T12:26:22.000000Z",
-    "user": {
-    "id": 1,
-    "first_name": "kavi",
-    "last_name": "yarasan",
-    "email": "kavi@gmail.com",
-    "email_verified_at": null,
-    "created_at": "2025-03-16T07:20:42.000000Z",
-    "updated_at": "2025-03-16T07:20:42.000000Z"
-    },
-    "project": {
-    "id": 2,
-    "name": "Arrow",
-    "status": "completed",
-    "created_at": "2025-03-16T11:01:07.000000Z",
-    "updated_at": "2025-03-16T11:05:33.000000Z"
-    }
-    }
+
+        Endpoint: GET /api/timesheets/1
+        Response:{
+        "id": 1,
+        "task_name": "Scripting",
+        "date": "2025-03-16",
+        "hours": "8.00",
+        "user_id": 1,
+        "project_id": 2,
+        "created_at": "2025-03-16T12:26:22.000000Z",
+        "updated_at": "2025-03-16T12:26:22.000000Z",
+        "user": {
+        "id": 1,
+        "first_name": "kavi",
+        "last_name": "yarasan",
+        "email": "kavi@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2025-03-16T07:20:42.000000Z",
+        "updated_at": "2025-03-16T07:20:42.000000Z"
+        },
+        "project": {
+        "id": 2,
+        "name": "Arrow",
+        "status": "completed",
+        "created_at": "2025-03-16T11:01:07.000000Z",
+        "updated_at": "2025-03-16T11:05:33.000000Z"
+        }
+        }
 
 ---
 
